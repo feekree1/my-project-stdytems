@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* --- 1. CORE STYLES (คัดลอก Theme เดิมมาทั้งหมด) --- */
+        /* --- 1. CORE STYLES --- */
         :root {
             --primary-color: #1A3C34; 
             --accent-color: #D4AF37; 
@@ -25,14 +25,14 @@
             font-family: 'Prompt', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
-            line-height: 1.8; /* เพิ่มความสูงบรรทัดให้อ่านง่ายขึ้นสำหรับหน้าข้อมูล */
+            line-height: 1.8;
             padding-top: 80px;
         }
 
         h1, h2, h3, h4 { color: var(--primary-color); font-weight: 700; }
         h1, h2 { font-family: 'Playfair Display', serif; }
 
-        /* --- 2. HEADER & NAVBAR (เหมือนหน้า Index) --- */
+        /* --- 2. HEADER & NAVBAR --- */
         header {
             padding: 15px 5%;
             display: flex;
@@ -57,7 +57,6 @@
         }
         .btn-nav-cta:hover { background: var(--accent-color); }
 
-        /* Mobile Menu */
         .menu-icon { display: none; font-size: 1.5rem; color: var(--primary-color); cursor: pointer; }
         @media (max-width: 768px) {
             .menu-icon { display: block; }
@@ -71,113 +70,60 @@
             .navbar ul { flex-direction: column; }
         }
 
-        /* --- 3. PAGE SPECIFIC STYLES (ส่วนที่เพิ่มใหม่สำหรับหน้าข้อมูล) --- */
-        
-        /* Sub-Hero: ขนาดเล็กกว่าหน้า Index */
+        /* --- 3. CONTENT STYLES --- */
         .sub-hero {
             height: 50vh;
             background: linear-gradient(rgba(26, 60, 52, 0.7), rgba(26, 60, 52, 0.5)), url('https://thailandtourismdirectory.go.th/assets/upload/2017/11/02/2017110255561a096c469f6874e4ce4999f8d5ac115858.jpg');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: var(--white);
-            margin-top: -80px;
+            background-size: cover; background-position: center;
+            display: flex; align-items: center; justify-content: center;
+            text-align: center; color: var(--white); margin-top: -80px;
         }
 
         .sub-hero h1 { color: var(--white); font-size: 3.5rem; margin-bottom: 10px; }
         .breadcrumb { font-size: 0.9rem; opacity: 0.8; }
         .breadcrumb a { color: var(--white); text-decoration: none; margin: 0 5px; }
 
-        /* Content Sections */
-        .content-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 80px 20px;
-        }
-
-        .info-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
-            margin-bottom: 80px;
-        }
-
+        .content-container { max-width: 1100px; margin: 0 auto; padding: 80px 20px; }
+        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; margin-bottom: 80px; }
         .info-text h2 { font-size: 2rem; margin-bottom: 20px; }
         .separator { width: 50px; height: 3px; background: var(--accent-color); margin-bottom: 25px; }
         .info-text p { color: var(--text-light); margin-bottom: 20px; text-align: justify; }
 
         .info-img {
-            width: 100%;
-            height: 400px;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            position: relative;
+            width: 100%; height: 400px; border-radius: 20px; overflow: hidden;
+            box-shadow: var(--shadow); position: relative;
         }
         .info-img img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); }
         .info-img:hover img { transform: scale(1.05); }
 
-        /* Motto Section (กล่องคำขวัญ) */
         .motto-box {
-            background-color: var(--primary-color);
-            color: var(--white);
-            text-align: center;
-            padding: 60px 40px;
-            border-radius: 20px;
-            margin-bottom: 80px;
-            position: relative;
-            overflow: hidden;
+            background-color: var(--primary-color); color: var(--white); text-align: center;
+            padding: 60px 40px; border-radius: 20px; margin-bottom: 80px; position: relative; overflow: hidden;
         }
-        
-        /* ลวดลายตกแต่งจางๆ */
         .motto-box::before {
-            content: '\f1bb'; /* Icon tree */
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
-            position: absolute;
-            top: -20px; right: -20px;
-            font-size: 15rem;
-            opacity: 0.05;
-            color: var(--white);
+            content: '\f1bb'; font-family: 'Font Awesome 6 Free'; font-weight: 900;
+            position: absolute; top: -20px; right: -20px; font-size: 15rem; opacity: 0.05; color: var(--white);
         }
-
         .motto-text { font-size: 1.8rem; font-family: 'Playfair Display', serif; margin-bottom: 20px; line-height: 1.4; }
         .motto-label { color: var(--accent-color); letter-spacing: 2px; text-transform: uppercase; font-size: 0.9rem; }
 
-        /* Identity Grid (สัญลักษณ์จังหวัด) */
         .identity-section h2 { text-align: center; font-size: 2rem; margin-bottom: 10px; }
         .center-sep { margin: 0 auto 50px auto; }
-
-        .identity-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-
+        .identity-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
         .identity-card {
-            background: var(--white);
-            padding: 30px;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: var(--shadow);
-            border-top: 4px solid var(--accent-color);
+            background: var(--white); padding: 30px; border-radius: 15px; text-align: center;
+            box-shadow: var(--shadow); border-top: 4px solid var(--accent-color);
         }
         .identity-icon { font-size: 2.5rem; color: var(--primary-color); margin-bottom: 20px; }
         .identity-card h4 { margin-bottom: 10px; font-size: 1.2rem; }
         .identity-card p { font-size: 0.9rem; color: var(--text-light); }
 
-        /* Footer (เหมือน Index) */
         footer { background: #112621; color: #888; text-align: center; padding: 40px; font-size: 0.9rem; }
         .social-icons a { color: var(--white); margin: 0 10px; font-size: 1.2rem; }
 
-        /* Responsive Adjustments */
         @media (max-width: 768px) {
             .info-grid { grid-template-columns: 1fr; }
-            .info-img { height: 300px; order: -1; } /* รูปขึ้นก่อนบนมือถือ */
+            .info-img { height: 300px; order: -1; }
             .sub-hero h1 { font-size: 2.5rem; }
         }
     </style>
@@ -194,7 +140,8 @@
         <nav class="navbar" id="navbar-menu">
             <ul>
                 <li><a href="index.html">หน้าหลัก</a></li>
-                <li><a href="about.html" style="color: var(--accent-color);">รู้จักยะลา</a></li> <li><a href="index.html#destinations">สถานที่ท่องเที่ยว</a></li>
+                <li><a href="about.html" style="color: var(--accent-color);">รู้จักยะลา</a></li>
+                <li><a href="index.html#destinations">สถานที่ท่องเที่ยว</a></li>
                 <li><a href="index.html#contact" class="btn-nav-cta">จองทริป</a></li>
             </ul>
         </nav>
