@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YALA: The Green Gem of The South</title>
-    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -20,11 +20,8 @@
             --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Prompt', sans-serif;
@@ -32,30 +29,28 @@
             color: var(--text-color);
             line-height: 1.6;
             overflow-x: hidden;
+            padding-top: 80px; /* เว้นที่ให้ Header */
         }
 
-        h1, h2, h3 {
-            color: var(--primary-color);
-            font-weight: 700;
-        }
-
-        h1 { font-family: 'Playfair Display', serif; } /* หัวข้อหลักใช้ฟอนต์หรูหรา */
-
-        a { text-decoration: none; color: inherit; }
+        h1, h2, h3 { color: var(--primary-color); font-weight: 700; }
+        h1 { font-family: 'Playfair Display', serif; }
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
         ul { list-style: none; }
 
-        /* --- 2. HEADER & HERO SECTION --- */
+        /* --- 2. HEADER & NAVBAR (UPDATED) --- */
         header {
-            padding: 20px 50px;
+            padding: 15px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(255,255,255,0.9);
+            background: rgba(255,255,255,0.95);
             backdrop-filter: blur(10px);
             position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
         }
 
         .logo {
@@ -63,12 +58,85 @@
             font-weight: bold;
             color: var(--primary-color);
             letter-spacing: 2px;
+            z-index: 1002;
         }
         .logo span { color: var(--accent-color); }
 
+        /* Desktop Menu */
+        .navbar ul {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .navbar a {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--primary-color);
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .navbar a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--accent-color);
+            transition: var(--transition);
+        }
+
+        .navbar a:hover { color: var(--accent-color); }
+        .navbar a:hover::after { width: 100%; }
+
+        .btn-nav-cta {
+            padding: 8px 25px;
+            background: var(--primary-color);
+            color: var(--white) !important;
+            border-radius: 50px;
+            font-size: 0.9rem;
+        }
+        .btn-nav-cta:hover { background: var(--accent-color); color: var(--white) !important; }
+        .btn-nav-cta::after { display: none; }
+
+        /* Mobile Menu Icon */
+        .menu-icon {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            cursor: pointer;
+            z-index: 1002;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .menu-icon { display: block; }
+            .navbar {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background: var(--white);
+                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: var(--transition);
+                z-index: 1001;
+            }
+            .navbar.active { right: 0; }
+            .navbar ul { flex-direction: column; gap: 40px; text-align: center; }
+            .navbar a { font-size: 1.2rem; }
+        }
+
+        /* --- 3. HERO SECTION --- */
         .hero {
-            height: 100vh;
-            background: linear-gradient(rgba(26, 60, 52, 0.6), rgba(26, 60, 52, 0.4)), url('https://images.unsplash.com/photo-1596423589416-64153eb49210?q=80&w=1920&auto=format&fit=crop'); /* Placeholder image representing mist/nature */
+            height: 90vh;
+            background: linear-gradient(rgba(26, 60, 52, 0.5), rgba(26, 60, 52, 0.3)), url('https://images.unsplash.com/photo-1596423589416-64153eb49210?q=80&w=1920&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
             display: flex;
@@ -78,6 +146,7 @@
             text-align: center;
             color: var(--white);
             padding: 0 20px;
+            margin-top: -80px;
         }
 
         .hero h1 {
@@ -108,192 +177,93 @@
             letter-spacing: 1px;
             animation: fadeInUp 1.4s ease;
         }
+        .btn-gold:hover { background: transparent; color: var(--accent-color); }
 
-        .btn-gold:hover {
-            background: transparent;
-            color: var(--accent-color);
-        }
-
-        /* --- 3. INFOGRAPHIC STATS SECTION --- */
-        .infographic-section {
-            padding: 80px 10%;
-            background: var(--white);
-            position: relative;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
+        /* --- 4. SECTIONS STYLE --- */
+        .infographic-section, .destinations, .cta-section { padding: 80px 10%; }
+        .infographic-section { background: var(--white); }
         
+        .section-header { text-align: center; margin-bottom: 60px; }
         .section-header h2 { font-size: 2.5rem; margin-bottom: 10px; }
-        .section-header span { 
-            display: block; 
-            width: 60px; 
-            height: 4px; 
-            background: var(--accent-color); 
-            margin: 0 auto; 
-        }
+        .section-header span { display: block; width: 60px; height: 4px; background: var(--accent-color); margin: 0 auto; }
 
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-        }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; }
+        .stat-card { text-align: center; padding: 40px 20px; border-radius: 20px; background: var(--bg-color); transition: var(--transition); border: 1px solid rgba(0,0,0,0.05); }
+        .stat-card:hover { transform: translateY(-10px); box-shadow: var(--shadow); border-color: var(--accent-color); }
+        .stat-icon { font-size: 3rem; color: var(--primary-color); margin-bottom: 20px; }
+        .stat-number { font-size: 2.5rem; font-weight: 700; color: var(--accent-color); display: block; margin-bottom: 10px; }
 
-        .stat-card {
-            text-align: center;
-            padding: 40px 20px;
-            border-radius: 20px;
-            background: var(--bg-color);
-            transition: var(--transition);
-            border: 1px solid rgba(0,0,0,0.05);
-        }
+        /* Filter & Cards */
+        .filter-container { text-align: center; margin-bottom: 40px; }
+        .filter-btn { background: none; border: 1px solid var(--primary-color); padding: 10px 25px; margin: 5px; border-radius: 30px; cursor: pointer; color: var(--primary-color); font-family: 'Prompt', sans-serif; transition: var(--transition); }
+        .filter-btn.active, .filter-btn:hover { background: var(--primary-color); color: var(--white); }
 
-        .stat-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow);
-            border-color: var(--accent-color);
-        }
+        .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; }
+        .card { background: var(--white); border-radius: 15px; overflow: hidden; box-shadow: var(--shadow); transition: var(--transition); }
+        .card.hide { display: none; }
+        .card-img { height: 220px; background-color: #ddd; background-size: cover; background-position: center; position: relative; }
+        .card-tag { position: absolute; top: 15px; right: 15px; background: rgba(26, 60, 52, 0.9); color: var(--white); padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; }
+        .card-body { padding: 25px; }
+        .card-footer { display: flex; justify-content: space-between; border-top: 1px solid #eee; padding-top: 15px; font-size: 0.9rem; color: var(--primary-color); font-weight: 600; margin-top: 20px; }
 
-        .stat-icon {
-            font-size: 3rem;
-            color: var(--primary-color);
-            margin-bottom: 20px;
-        }
+        /* CTA & Footer */
+        .cta-section { background: var(--primary-color); color: var(--white); text-align: center; }
+        
+        footer { background: #112621; color: #888; text-align: center; padding: 40px; font-size: 0.9rem; }
+        .social-icons { margin-top: 20px; }
+        .social-icons a { color: var(--white); font-size: 1.2rem; margin: 0 10px; transition: var(--transition); }
+        .social-icons a:hover { color: var(--accent-color); transform: scale(1.2); }
 
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--accent-color);
-            display: block;
-            margin-bottom: 10px;
-        }
-
-        /* --- 4. INTERACTIVE DESTINATIONS --- */
-        .destinations {
-            padding: 80px 10%;
-        }
-
-        .filter-container {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .filter-btn {
-            background: none;
-            border: 1px solid var(--primary-color);
-            padding: 10px 25px;
-            margin: 5px;
-            border-radius: 30px;
-            cursor: pointer;
-            color: var(--primary-color);
-            font-family: 'Prompt', sans-serif;
-            transition: var(--transition);
-        }
-
-        .filter-btn.active, .filter-btn:hover {
-            background: var(--primary-color);
+        /* Scroll Top Button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--accent-color);
             color: var(--white);
-        }
-
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .card {
-            background: var(--white);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        .card.hide {
-            display: none;
-        }
-
-        .card-img {
-            height: 220px;
-            background-color: #ddd;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-        }
-
-        /* Tag Label Style */
-        .card-tag {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: rgba(26, 60, 52, 0.9);
-            color: var(--white);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-        }
-
-        .card-body {
-            padding: 25px;
-        }
-
-        .card-body h3 {
-            font-size: 1.4rem;
-            margin-bottom: 10px;
-        }
-
-        .card-body p {
-            color: var(--text-light);
-            font-size: 0.95rem;
-            margin-bottom: 20px;
-        }
-
-        .card-footer {
+            border-radius: 50%;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-            border-top: 1px solid #eee;
-            padding-top: 15px;
-            font-size: 0.9rem;
-            color: var(--primary-color);
-            font-weight: 600;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 999;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
+        .scroll-top.active { opacity: 1; visibility: visible; }
+        .scroll-top:hover { background: var(--primary-color); transform: translateY(-5px); }
 
-        /* --- 5. CALL TO ACTION & FOOTER --- */
-        .cta-section {
-            background: var(--primary-color);
-            color: var(--white);
-            text-align: center;
-            padding: 80px 20px;
-        }
-
-        footer {
-            background: #112621;
-            color: #888;
-            text-align: center;
-            padding: 40px;
-            font-size: 0.9rem;
-        }
-
-        /* --- ANIMATIONS --- */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
+        /* Animation */
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @media (max-width: 768px) { .hero h1 { font-size: 2.5rem; } }
     </style>
 </head>
-<body>
+<body id="home">
 
     <header>
-        <div class="logo">YALA <span>VISIT</span></div>
-        <nav>
-            </nav>
+        <a href="#home" class="logo">YALA <span>VISIT</span></a>
+        
+        <div class="menu-icon" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+
+        <nav class="navbar" id="navbar-menu">
+            <ul>
+                <li><a href="#home" onclick="toggleMenu()">หน้าหลัก</a></li>
+                <li><a href="#about" onclick="toggleMenu()">รู้จักยะลา</a></li>
+                <li><a href="#destinations" onclick="toggleMenu()">สถานที่ท่องเที่ยว</a></li>
+                <li><a href="#contact" class="btn-nav-cta" onclick="toggleMenu()">จองทริป</a></li>
+            </ul>
+        </nav>
     </header>
+
+    <div class="scroll-top" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </div>
 
     <section class="hero">
         <h1>ใต้สุดสยาม เมืองงามชายแดน</h1>
@@ -301,12 +271,11 @@
         <button class="btn-gold" onclick="document.getElementById('destinations').scrollIntoView({behavior: 'smooth'})">เริ่มต้นการเดินทาง</button>
     </section>
 
-    <section class="infographic-section">
+    <section id="about" class="infographic-section">
         <div class="section-header">
             <h2>ทำไมต้องยะลา?</h2>
             <span></span>
         </div>
-        
         <div class="stats-grid">
             <div class="stat-card">
                 <i class="fas fa-mountain stat-icon"></i>
@@ -326,7 +295,7 @@
         </div>
     </section>
 
-    <section class="destinations" id="destinations">
+    <section id="destinations" class="destinations">
         <div class="section-header">
             <h2>จุดหมายปลายทาง</h2>
             <span></span>
@@ -341,67 +310,42 @@
         </div>
 
         <div class="cards-grid">
-            
             <div class="card nature adventure">
-                <div class="card-img" style="background-image: url('https://thailandtourismdirectory.go.th/assets/upload/2021/11/1/20211101859c0490f23075677943d039750d037a111409.jpg');">
-                    <span class="card-tag">Highlight</span>
-                </div>
+                <div class="card-img" style="background-image: url('https://thailandtourismdirectory.go.th/assets/upload/2021/11/1/20211101859c0490f23075677943d039750d037a111409.jpg');"><span class="card-tag">Highlight</span></div>
                 <div class="card-body">
                     <h3>สกายวอล์ค อัยเยอร์เวง</h3>
-                    <p>ชมทะเลหมอกแบบ 360 องศา บนทางเดินกระจกที่ยาวที่สุดในอาเซียน สัมผัสอากาศบริสุทธิ์เหนือยอดเขา</p>
-                    <div class="card-footer">
-                        <span><i class="fas fa-map-marker-alt"></i> อ.เบตง</span>
-                        <span><i class="fas fa-arrow-right"></i></span>
-                    </div>
+                    <p>ชมทะเลหมอกแบบ 360 องศา บนทางเดินกระจกที่ยาวที่สุดในอาเซียน</p>
+                    <div class="card-footer"><span><i class="fas fa-map-marker-alt"></i> อ.เบตง</span><span><i class="fas fa-arrow-right"></i></span></div>
                 </div>
             </div>
-
             <div class="card nature">
-                <div class="card-img" style="background-image: url('https://tatapi.tourismthailand.org/tatfs/Image/CustomPOI/Picture/P03013239_1.jpeg');">
-                    <span class="card-tag">Nature</span>
-                </div>
+                <div class="card-img" style="background-image: url('https://tatapi.tourismthailand.org/tatfs/Image/CustomPOI/Picture/P03013239_1.jpeg');"><span class="card-tag">Nature</span></div>
                 <div class="card-body">
                     <h3>สวนดอกไม้เมืองหนาว</h3>
-                    <p>สวนไม้ดอกเมืองหนาวท่ามกลางหุบเขา ความงดงามแห่งพฤกษานานาพันธุ์ที่เบ่งบานตลอดปี</p>
-                    <div class="card-footer">
-                        <span><i class="fas fa-map-marker-alt"></i> หมู่บ้านปิยะมิตร 2</span>
-                        <span><i class="fas fa-arrow-right"></i></span>
-                    </div>
+                    <p>สวนไม้ดอกเมืองหนาวท่ามกลางหุบเขา ความงดงามแห่งพฤกษานานาพันธุ์</p>
+                    <div class="card-footer"><span><i class="fas fa-map-marker-alt"></i> หมู่บ้านปิยะมิตร 2</span><span><i class="fas fa-arrow-right"></i></span></div>
                 </div>
             </div>
-
             <div class="card culture">
-                <div class="card-img" style="background-image: url('https://thai.tourismthailand.org/Images/attraction/Attraction_1180.jpg');">
-                    <span class="card-tag">History</span>
-                </div>
+                <div class="card-img" style="background-image: url('https://thai.tourismthailand.org/Images/attraction/Attraction_1180.jpg');"><span class="card-tag">History</span></div>
                 <div class="card-body">
                     <h3>อุโมงค์ปิยะมิตร</h3>
-                    <p>ร่องรอยประวัติศาสตร์ในอดีต อุโมงค์ดินที่ขุดด้วยแรงคน ล้อมรอบด้วยป่าทึบและเรื่องราวที่น่าค้นหา</p>
-                    <div class="card-footer">
-                        <span><i class="fas fa-map-marker-alt"></i> อ.เบตง</span>
-                        <span><i class="fas fa-arrow-right"></i></span>
-                    </div>
+                    <p>ร่องรอยประวัติศาสตร์ในอดีต อุโมงค์ดินที่ขุดด้วยแรงคน ล้อมรอบด้วยป่าทึบ</p>
+                    <div class="card-footer"><span><i class="fas fa-map-marker-alt"></i> อ.เบตง</span><span><i class="fas fa-arrow-right"></i></span></div>
                 </div>
             </div>
-
             <div class="card adventure">
-                <div class="card-img" style="background-image: url('https://thailandtourismdirectory.go.th/assets/upload/2017/11/02/2017110255561a096c469f6874e4ce4999f8d5ac115858.jpg');">
-                    <span class="card-tag">Adventure</span>
-                </div>
+                <div class="card-img" style="background-image: url('https://thailandtourismdirectory.go.th/assets/upload/2017/11/02/2017110255561a096c469f6874e4ce4999f8d5ac115858.jpg');"><span class="card-tag">Adventure</span></div>
                 <div class="card-body">
                     <h3>ป่าฮาลา-บาลา</h3>
-                    <p>อเมซอนแห่งเอเชีย ล่องเรือชมธรรมชาติ ส่องนกเงือก และสัมผัสความดิบของผืนป่าที่สมบูรณ์ที่สุด</p>
-                    <div class="card-footer">
-                        <span><i class="fas fa-map-marker-alt"></i> อ.ธารโต</span>
-                        <span><i class="fas fa-arrow-right"></i></span>
-                    </div>
+                    <p>อเมซอนแห่งเอเชีย ล่องเรือชมธรรมชาติ ส่องนกเงือก และสัมผัสความดิบของผืนป่า</p>
+                    <div class="card-footer"><span><i class="fas fa-map-marker-alt"></i> อ.ธารโต</span><span><i class="fas fa-arrow-right"></i></span></div>
                 </div>
             </div>
-
         </div>
     </section>
 
-    <section class="cta-section">
+    <section id="contact" class="cta-section">
         <h2 style="color: var(--white);">พร้อมสัมผัสประสบการณ์สุดพิเศษหรือยัง?</h2>
         <p style="margin: 20px 0;">วางแผนการเดินทางของคุณวันนี้ เพื่อความทรงจำที่มิอาจลืมเลือน</p>
         <button class="btn-gold" style="background: var(--white); color: var(--primary-color);">จองทริปเลย</button>
@@ -409,61 +353,71 @@
 
     <footer>
         <p>&copy; 2024 Yala Tourism Board. Designed with elegance.</p>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-line"></i></a>
+        </div>
     </footer>
 
     <script>
-        // ฟังก์ชันสำหรับกรองข้อมูล (Filter)
+        // 1. Mobile Menu Toggle
+        function toggleMenu() {
+            var menu = document.getElementById("navbar-menu");
+            menu.classList.toggle("active");
+        }
+
+        // 2. Scroll To Top Logic
+        window.addEventListener('scroll', function() {
+            var scrollBtn = document.querySelector('.scroll-top');
+            if (window.scrollY > 300) {
+                scrollBtn.classList.add('active');
+            } else {
+                scrollBtn.classList.remove('active');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // 3. Filter Logic
         function filterSelection(c) {
             var x, i;
             x = document.getElementsByClassName("card");
             var btns = document.getElementsByClassName("filter-btn");
 
-            // ลบ class active ออกจากทุกปุ่ม แล้วใส่ให้ปุ่มที่กด
             for (i = 0; i < btns.length; i++) {
                 btns[i].classList.remove("active");
-                if (event.target == btns[i]) {
-                    btns[i].classList.add("active");
-                }
+                if (event.target == btns[i]) btns[i].classList.add("active");
             }
 
             if (c == "all") c = "";
-            
-            // Loop ผ่านการ์ดทั้งหมด
             for (i = 0; i < x.length; i++) {
                 removeClass(x[i], "hide");
-                if (x[i].className.indexOf(c) == -1) {
-                    addClass(x[i], "hide");
-                }
+                if (x[i].className.indexOf(c) == -1) addClass(x[i], "hide");
             }
         }
 
-        // ฟังก์ชันช่วยเพิ่ม class
         function addClass(element, name) {
             var i, arr1, arr2;
             arr1 = element.className.split(" ");
             arr2 = name.split(" ");
             for (i = 0; i < arr2.length; i++) {
-                if (arr1.indexOf(arr2[i]) == -1) {
-                    element.className += " " + arr2[i];
-                }
+                if (arr1.indexOf(arr2[i]) == -1) element.className += " " + arr2[i];
             }
         }
 
-        // ฟังก์ชันช่วยลบ class
         function removeClass(element, name) {
             var i, arr1, arr2;
             arr1 = element.className.split(" ");
             arr2 = name.split(" ");
             for (i = 0; i < arr2.length; i++) {
-                while (arr1.indexOf(arr2[i]) > -1) {
-                    arr1.splice(arr1.indexOf(arr2[i]), 1);
-                }
+                while (arr1.indexOf(arr2[i]) > -1) arr1.splice(arr1.indexOf(arr2[i]), 1);
             }
             element.className = arr1.join(" ");
         }
-        
-        // เริ่มต้นให้ปุ่ม Active ทำงาน
-        var btnContainer = document.querySelector(".filter-container");
     </script>
 
 </body>
