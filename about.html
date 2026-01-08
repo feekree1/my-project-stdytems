@@ -8,141 +8,45 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* --- 1. CORE STYLES --- */
-        :root {
-            --primary-color: #1A3C34; 
-            --accent-color: #D4AF37; 
-            --bg-color: #F9F8F4;      
-            --text-color: #333333;
-            --text-light: #777777;
-            --white: #ffffff;
-            --shadow: 0 10px 30px rgba(0,0,0,0.08);
-            --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-        }
-
+        :root { --primary-color: #1A3C34; --accent-color: #D4AF37; --bg-color: #F9F8F4; --text-color: #333333; --text-light: #777777; --white: #ffffff; --shadow: 0 10px 30px rgba(0,0,0,0.08); --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Prompt', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.8;
-            padding-top: 80px;
-        }
+        body { font-family: 'Prompt', sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.8; padding-top: 80px; }
+        h1, h2, h3, h4 { color: var(--primary-color); font-weight: 700; } h1, h2 { font-family: 'Playfair Display', serif; }
 
-        h1, h2, h3, h4 { color: var(--primary-color); font-weight: 700; }
-        h1, h2 { font-family: 'Playfair Display', serif; }
-
-        /* --- 2. HEADER & NAVBAR --- */
-        header {
-            padding: 15px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(255,255,255,0.95);
-            backdrop-filter: blur(10px);
-            position: fixed;
-            top: 0; left: 0; width: 100%; z-index: 1000;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
-        }
-
-        .logo { font-size: 1.5rem; font-weight: bold; color: var(--primary-color); letter-spacing: 2px; text-decoration: none; }
-        .logo span { color: var(--accent-color); }
-
+        header { padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; box-shadow: 0 2px 15px rgba(0,0,0,0.05); }
+        .logo { font-size: 1.5rem; font-weight: bold; color: var(--primary-color); letter-spacing: 2px; text-decoration: none; } .logo span { color: var(--accent-color); }
         .navbar ul { display: flex; gap: 30px; list-style: none; }
-        .navbar a { text-decoration: none; color: var(--primary-color); font-weight: 500; position: relative; transition: var(--transition); }
-        .navbar a:hover { color: var(--accent-color); }
-        
-        .btn-nav-cta {
-            padding: 8px 25px; background: var(--primary-color); color: var(--white) !important; border-radius: 50px;
-        }
-        .btn-nav-cta:hover { background: var(--accent-color); }
-
+        .navbar a { text-decoration: none; color: var(--primary-color); font-weight: 500; position: relative; transition: var(--transition); } .navbar a:hover { color: var(--accent-color); }
+        .btn-nav-cta { padding: 8px 25px; background: var(--primary-color); color: var(--white) !important; border-radius: 50px; } .btn-nav-cta:hover { background: var(--accent-color); }
         .menu-icon { display: none; font-size: 1.5rem; color: var(--primary-color); cursor: pointer; }
-        @media (max-width: 768px) {
-            .menu-icon { display: block; }
-            .navbar {
-                position: fixed; top: 0; right: -100%; width: 70%; height: 100vh;
-                background: var(--white); display: flex; flex-direction: column;
-                justify-content: center; align-items: center; transition: var(--transition);
-                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
-            }
-            .navbar.active { right: 0; }
-            .navbar ul { flex-direction: column; }
-        }
+        @media (max-width: 768px) { .menu-icon { display: block; } .navbar { position: fixed; top: 0; right: -100%; width: 70%; height: 100vh; background: var(--white); display: flex; flex-direction: column; justify-content: center; align-items: center; transition: var(--transition); box-shadow: -5px 0 15px rgba(0,0,0,0.1); } .navbar.active { right: 0; } .navbar ul { flex-direction: column; } }
 
-        /* --- 3. CONTENT STYLES --- */
-        .sub-hero {
-            height: 50vh;
-            background: linear-gradient(rgba(26, 60, 52, 0.7), rgba(26, 60, 52, 0.5)), url('https://thailandtourismdirectory.go.th/assets/upload/2017/11/02/2017110255561a096c469f6874e4ce4999f8d5ac115858.jpg');
-            background-size: cover; background-position: center;
-            display: flex; align-items: center; justify-content: center;
-            text-align: center; color: var(--white); margin-top: -80px;
-        }
-
+        .sub-hero { height: 50vh; background: linear-gradient(rgba(26, 60, 52, 0.7), rgba(26, 60, 52, 0.5)), url('https://thailandtourismdirectory.go.th/assets/upload/2017/11/02/2017110255561a096c469f6874e4ce4999f8d5ac115858.jpg'); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; text-align: center; color: var(--white); margin-top: -80px; }
         .sub-hero h1 { color: var(--white); font-size: 3.5rem; margin-bottom: 10px; }
-        .breadcrumb { font-size: 0.9rem; opacity: 0.8; }
-        .breadcrumb a { color: var(--white); text-decoration: none; margin: 0 5px; }
-
+        .breadcrumb { font-size: 0.9rem; opacity: 0.8; } .breadcrumb a { color: var(--white); text-decoration: none; margin: 0 5px; }
         .content-container { max-width: 1100px; margin: 0 auto; padding: 80px 20px; }
         .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; margin-bottom: 80px; }
-        .info-text h2 { font-size: 2rem; margin-bottom: 20px; }
         .separator { width: 50px; height: 3px; background: var(--accent-color); margin-bottom: 25px; }
-        .info-text p { color: var(--text-light); margin-bottom: 20px; text-align: justify; }
-
-        .info-img {
-            width: 100%; height: 400px; border-radius: 20px; overflow: hidden;
-            box-shadow: var(--shadow); position: relative;
-        }
-        .info-img img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); }
-        .info-img:hover img { transform: scale(1.05); }
-
-        .motto-box {
-            background-color: var(--primary-color); color: var(--white); text-align: center;
-            padding: 60px 40px; border-radius: 20px; margin-bottom: 80px; position: relative; overflow: hidden;
-        }
-        .motto-box::before {
-            content: '\f1bb'; font-family: 'Font Awesome 6 Free'; font-weight: 900;
-            position: absolute; top: -20px; right: -20px; font-size: 15rem; opacity: 0.05; color: var(--white);
-        }
-        .motto-text { font-size: 1.8rem; font-family: 'Playfair Display', serif; margin-bottom: 20px; line-height: 1.4; }
-        .motto-label { color: var(--accent-color); letter-spacing: 2px; text-transform: uppercase; font-size: 0.9rem; }
-
-        .identity-section h2 { text-align: center; font-size: 2rem; margin-bottom: 10px; }
-        .center-sep { margin: 0 auto 50px auto; }
+        .info-img { width: 100%; height: 400px; border-radius: 20px; overflow: hidden; box-shadow: var(--shadow); } .info-img img { width: 100%; height: 100%; object-fit: cover; }
+        .motto-box { background-color: var(--primary-color); color: var(--white); text-align: center; padding: 60px 40px; border-radius: 20px; margin-bottom: 80px; position: relative; overflow: hidden; }
+        .motto-text { font-size: 1.8rem; font-family: 'Playfair Display', serif; margin-bottom: 20px; }
+        .identity-card { background: var(--white); padding: 30px; border-radius: 15px; text-align: center; box-shadow: var(--shadow); border-top: 4px solid var(--accent-color); }
         .identity-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
-        .identity-card {
-            background: var(--white); padding: 30px; border-radius: 15px; text-align: center;
-            box-shadow: var(--shadow); border-top: 4px solid var(--accent-color);
-        }
         .identity-icon { font-size: 2.5rem; color: var(--primary-color); margin-bottom: 20px; }
-        .identity-card h4 { margin-bottom: 10px; font-size: 1.2rem; }
-        .identity-card p { font-size: 0.9rem; color: var(--text-light); }
-
         footer { background: #112621; color: #888; text-align: center; padding: 40px; font-size: 0.9rem; }
-        .social-icons a { color: var(--white); margin: 0 10px; font-size: 1.2rem; }
-
-        @media (max-width: 768px) {
-            .info-grid { grid-template-columns: 1fr; }
-            .info-img { height: 300px; order: -1; }
-            .sub-hero h1 { font-size: 2.5rem; }
-        }
+        @media (max-width: 768px) { .info-grid { grid-template-columns: 1fr; } .info-img { order: -1; height: 300px; } .sub-hero h1 { font-size: 2.5rem; } }
     </style>
 </head>
 <body>
-
     <header>
         <a href="index.html" class="logo">YALA <span>VISIT</span></a>
-        
-        <div class="menu-icon" onclick="toggleMenu()">
-            <i class="fas fa-bars"></i>
-        </div>
-
+        <div class="menu-icon" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
         <nav class="navbar" id="navbar-menu">
             <ul>
                 <li><a href="index.html">หน้าหลัก</a></li>
                 <li><a href="about.html" style="color: var(--accent-color);">รู้จักยะลา</a></li>
-                <li><a href="index.html#destinations">สถานที่ท่องเที่ยว</a></li>
-                <li><a href="index.html#contact" class="btn-nav-cta">จองทริป</a></li>
+                <li><a href="attractions.html">สถานที่ท่องเที่ยว</a></li>
+                <li><a href="booking.html" class="btn-nav-cta">จองทริป</a></li>
             </ul>
         </nav>
     </header>
@@ -150,99 +54,38 @@
     <section class="sub-hero">
         <div>
             <h1>รู้จักยะลา</h1>
-            <div class="breadcrumb">
-                <a href="index.html">หน้าแรก</a> / <span>ข้อมูลจังหวัด</span>
-            </div>
+            <div class="breadcrumb"><a href="index.html">หน้าแรก</a> / <span>ข้อมูลจังหวัด</span></div>
         </div>
     </section>
 
     <div class="content-container">
-        
         <div class="info-grid">
             <div class="info-text">
                 <h2>ประวัติความเป็นมา</h2>
                 <div class="separator"></div>
-                <p>
-                    ยะลา (Yala) เป็นจังหวัดหนึ่งในภาคใต้ของประเทศไทย และเป็นจังหวัดเดียวในภาคใต้ที่ไม่ติดทะเล แต่มีความอุดมสมบูรณ์ของธรรมชาติอย่างน่าอัศจรรย์ คำว่า "ยะลา" มาจากภาษามลายูถิ่นว่า "ยาลอ" (Jala) แปลว่า "แห" โดยสันนิษฐานว่าภูเขาในพื้นที่เขตเมืองเก่ายะลามีรูปร่างคล้ายแหจับปลา
-                </p>
-                <p>
-                    ในอดีต ยะลาเป็นส่วนหนึ่งของอาณาจักรลังกาสุกะ และต่อมาเป็นส่วนหนึ่งของเมืองปัตตานี ก่อนจะแยกตัวออกมาเป็นเมืองอิสระ ด้วยทำเลที่ตั้งที่โอบล้อมด้วยขุนเขา ทำให้ยะลาได้รับฉายาว่า "เมืองงามชายแดน" ที่มีการผสมผสานทางวัฒนธรรมทั้ง ไทย จีน และมลายู อย่างลงตัว
-                </p>
+                <p>ยะลา (Yala) เป็นจังหวัดหนึ่งในภาคใต้ของประเทศไทย และเป็นจังหวัดเดียวในภาคใต้ที่ไม่ติดทะเล แต่มีความอุดมสมบูรณ์ของธรรมชาติอย่างน่าอัศจรรย์...</p>
             </div>
-            <div class="info-img">
-                <img src="https://i.pinimg.com/736x/21/5d/4d/215d4d3886f77732d847844007b55f1f.jpg" alt="ผังเมืองยะลา">
-            </div>
+            <div class="info-img"><img src="https://i.pinimg.com/736x/21/5d/4d/215d4d3886f77732d847844007b55f1f.jpg" alt="ผังเมืองยะลา"></div>
         </div>
 
         <div class="motto-box">
-            <p class="motto-label">คำขวัญประจำจังหวัด</p>
-            <h3 class="motto-text">
-                "ใต้สุดสยาม เมืองงามชายแดน"
-            </h3>
-            <p style="opacity: 0.8;">The Southernmost Gem of Siam, The Beautiful Border City</p>
+            <p style="color:var(--accent-color); letter-spacing:2px; text-transform:uppercase;">คำขวัญประจำจังหวัด</p>
+            <h3 class="motto-text">"ใต้สุดสยาม เมืองงามชายแดน"</h3>
         </div>
 
-        <div class="identity-section">
+        <div style="text-align:center; margin-bottom:50px;">
             <h2>สัญลักษณ์ประจำจังหวัด</h2>
-            <div class="separator center-sep"></div>
-            
+            <div class="separator" style="margin:0 auto 30px auto;"></div>
             <div class="identity-grid">
-                <div class="identity-card">
-                    <i class="fas fa-seedling identity-icon"></i>
-                    <h4>ต้นไม้ประจำจังหวัด</h4>
-                    <p><strong>ต้นโศกเหลือง</strong> (ศรียะลา)<br>ไม้ยืนต้นที่มีดอกสีเหลืองสวยงาม พบมากในป่าดิบชื้นของยะลา</p>
-                </div>
-                <div class="identity-card">
-                    <i class="fas fa-fan identity-icon"></i>
-                    <h4>ดอกไม้ประจำจังหวัด</h4>
-                    <p><strong>ดอกพิกุล</strong><br>ดอกไม้ขนาดเล็กสีขาวนวล มีกลิ่นหอมเย็น สื่อถึงความบริสุทธิ์และยั่งยืน</p>
-                </div>
-                <div class="identity-card">
-                    <i class="fas fa-bullseye identity-icon"></i> <h4>สัตว์ประจำจังหวัด</h4>
-                    <p><strong>ช้างเผือก</strong><br>สัญลักษณ์แห่งความศักดิ์สิทธิ์ คู่บ้านคู่เมืองที่ปรากฏในตราประจำจังหวัด</p>
-                </div>
+                <div class="identity-card"><i class="fas fa-seedling identity-icon"></i><h4>ต้นไม้ประจำจังหวัด</h4><p>ต้นโศกเหลือง</p></div>
+                <div class="identity-card"><i class="fas fa-fan identity-icon"></i><h4>ดอกไม้ประจำจังหวัด</h4><p>ดอกพิกุล</p></div>
+                <div class="identity-card"><i class="fas fa-bullseye identity-icon"></i><h4>สัตว์ประจำจังหวัด</h4><p>ช้างเผือก</p></div>
             </div>
         </div>
-
-        <div style="margin-top: 80px;">
-            <div class="info-grid" style="grid-template-columns: 1fr 1fr;">
-                <div class="info-img" style="height: 300px;">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Amphoe_Yala.svg/1200px-Amphoe_Yala.svg.png" alt="แผนที่อำเภอ">
-                </div>
-                <div class="info-text">
-                    <h2>การปกครอง</h2>
-                    <div class="separator"></div>
-                    <p>จังหวัดยะลาแบ่งการปกครองออกเป็น 8 อำเภอ ได้แก่:</p>
-                    <ul style="list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; color: var(--text-light);">
-                        <li><i class="fas fa-check-circle" style="color: var(--accent-color); margin-right: 5px;"></i> อ.เมืองยะลา</li>
-                        <li><i class="fas fa-check-circle" style="color: var(--accent-color); margin-right: 5px;"></i> อ.เบตง</li>
-                        <li><i class="fas fa-check-circle" style="color: var(--accent-color); margin-right: 5px;"></i> อ.บันนังสตา</li>
-                        <li><i class="fas fa-check-circle" style="color: var(--accent-color); margin-right: 5px;"></i> อ.ธารโต</li>
-                        <li><i class="fas fa-check-circle" style="color: var(--accent-color); margin-right: 5px;"></i> อ.ยะหา</li>
-                        <li><i class="fas fa-check-circle" style="color: var(--accent-color); margin-right: 5px;"></i> อ.รามัน</li>
-                        <li><i class="fas fa-check-circle" style="color: var(--accent-color); margin-right: 5px;"></i> อ.กาบัง</li>
-                        <li><i class="fas fa-check-circle" style="color: var(--accent-color); margin-right: 5px;"></i> อ.กรงปินัง</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
     </div>
 
-    <footer>
-        <p>&copy; 2024 Yala Tourism Board. Designed with elegance.</p>
-        <div class="social-icons" style="margin-top: 20px;">
-            <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-        </div>
-    </footer>
+    <footer><p>&copy; 2024 Yala Tourism Board.</p></footer>
 
-    <script>
-        function toggleMenu() {
-            var menu = document.getElementById("navbar-menu");
-            menu.classList.toggle("active");
-        }
-    </script>
+    <script>function toggleMenu() { document.getElementById("navbar-menu").classList.toggle("active"); }</script>
 </body>
 </html>

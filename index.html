@@ -8,124 +8,67 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* --- 1. SETTING VARIABLES & RESET --- */
+        /* --- CORE VARIABLES --- */
         :root {
-            --primary-color: #1A3C34; /* เขียวมรกตเข้ม */
-            --accent-color: #D4AF37; /* ทองแชมเปญ */
-            --bg-color: #F9F8F4;      /* ครีมอ่อน */
-            --text-color: #333333;
-            --text-light: #777777;
-            --white: #ffffff;
-            --shadow: 0 10px 30px rgba(0,0,0,0.08);
-            --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --primary-color: #1A3C34; --accent-color: #D4AF37; --bg-color: #F9F8F4;
+            --text-color: #333333; --text-light: #777777; --white: #ffffff;
+            --shadow: 0 10px 30px rgba(0,0,0,0.08); --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
-
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-
-        body {
-            font-family: 'Prompt', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            overflow-x: hidden;
-            padding-top: 80px;
-        }
-
-        h1, h2, h3 { color: var(--primary-color); font-weight: 700; }
-        h1 { font-family: 'Playfair Display', serif; }
+        body { font-family: 'Prompt', sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; padding-top: 80px; }
+        h1, h2, h3 { color: var(--primary-color); font-weight: 700; } h1 { font-family: 'Playfair Display', serif; }
         a { text-decoration: none; color: inherit; transition: var(--transition); }
         ul { list-style: none; }
 
-        /* --- 2. HEADER & NAVBAR --- */
+        /* --- HEADER & NAVBAR --- */
         header {
-            padding: 15px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(255,255,255,0.95);
-            backdrop-filter: blur(10px);
-            position: fixed;
-            top: 0; left: 0; width: 100%; z-index: 1000;
+            padding: 15px 5%; display: flex; justify-content: space-between; align-items: center;
+            background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);
+            position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
             box-shadow: 0 2px 15px rgba(0,0,0,0.05);
         }
-
-        .logo {
-            font-size: 1.5rem; font-weight: bold; color: var(--primary-color); letter-spacing: 2px; z-index: 1002;
-        }
-        .logo span { color: var(--accent-color); }
-
+        .logo { font-size: 1.5rem; font-weight: bold; color: var(--primary-color); letter-spacing: 2px; } .logo span { color: var(--accent-color); }
         .navbar ul { display: flex; gap: 30px; align-items: center; }
-        .navbar a {
-            font-size: 1rem; font-weight: 500; color: var(--primary-color); position: relative; padding: 5px 0;
-        }
-        .navbar a::after {
-            content: ''; position: absolute; width: 0; height: 2px; bottom: 0; left: 0;
-            background-color: var(--accent-color); transition: var(--transition);
-        }
-        .navbar a:hover { color: var(--accent-color); }
-        .navbar a:hover::after { width: 100%; }
-
-        .btn-nav-cta {
-            padding: 8px 25px; background: var(--primary-color); color: var(--white) !important;
-            border-radius: 50px; font-size: 0.9rem;
-        }
-        .btn-nav-cta:hover { background: var(--accent-color); color: var(--white) !important; }
-        .btn-nav-cta::after { display: none; }
-
-        .menu-icon { display: none; font-size: 1.5rem; color: var(--primary-color); cursor: pointer; z-index: 1002; }
+        .navbar a { font-size: 1rem; font-weight: 500; color: var(--primary-color); position: relative; padding: 5px 0; }
+        .navbar a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: 0; left: 0; background-color: var(--accent-color); transition: var(--transition); }
+        .navbar a:hover { color: var(--accent-color); } .navbar a:hover::after { width: 100%; }
+        .btn-nav-cta { padding: 8px 25px; background: var(--primary-color); color: var(--white) !important; border-radius: 50px; font-size: 0.9rem; }
+        .btn-nav-cta:hover { background: var(--accent-color); } .btn-nav-cta::after { display: none; }
+        .menu-icon { display: none; font-size: 1.5rem; color: var(--primary-color); cursor: pointer; }
 
         @media (max-width: 768px) {
             .menu-icon { display: block; }
-            .navbar {
-                position: fixed; top: 0; right: -100%; width: 70%; height: 100vh;
-                background: var(--white); box-shadow: -5px 0 15px rgba(0,0,0,0.1);
-                display: flex; flex-direction: column; justify-content: center; align-items: center;
-                transition: var(--transition); z-index: 1001;
-            }
-            .navbar.active { right: 0; }
-            .navbar ul { flex-direction: column; gap: 40px; text-align: center; }
-            .navbar a { font-size: 1.2rem; }
+            .navbar { position: fixed; top: 0; right: -100%; width: 70%; height: 100vh; background: var(--white); box-shadow: -5px 0 15px rgba(0,0,0,0.1); display: flex; flex-direction: column; justify-content: center; align-items: center; transition: var(--transition); }
+            .navbar.active { right: 0; } .navbar ul { flex-direction: column; gap: 40px; text-align: center; }
         }
 
-        /* --- 3. HERO & SECTIONS --- */
+        /* --- HERO --- */
         .hero {
-            height: 90vh;
-            background: linear-gradient(rgba(26, 60, 52, 0.5), rgba(26, 60, 52, 0.3)), url('https://images.unsplash.com/photo-1596423589416-64153eb49210?q=80&w=1920&auto=format&fit=crop');
-            background-size: cover; background-position: center;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            text-align: center; color: var(--white); padding: 0 20px; margin-top: -80px;
+            height: 90vh; background: linear-gradient(rgba(26, 60, 52, 0.5), rgba(26, 60, 52, 0.3)), url('https://images.unsplash.com/photo-1596423589416-64153eb49210?q=80&w=1920&auto=format&fit=crop');
+            background-size: cover; background-position: center; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: var(--white); margin-top: -80px;
         }
-
         .hero h1 { font-size: 4rem; margin-bottom: 20px; text-shadow: 0 4px 10px rgba(0,0,0,0.3); animation: fadeInUp 1s ease; }
         .hero p { font-size: 1.2rem; max-width: 600px; margin-bottom: 40px; font-weight: 300; animation: fadeInUp 1.2s ease; }
-        
-        .btn-gold {
-            padding: 15px 40px; background: var(--accent-color); color: var(--white); font-weight: 600;
-            border-radius: 50px; transition: var(--transition); border: 2px solid var(--accent-color);
-            cursor: pointer; letter-spacing: 1px; animation: fadeInUp 1.4s ease;
-        }
+        .btn-gold { padding: 15px 40px; background: var(--accent-color); color: var(--white); font-weight: 600; border-radius: 50px; transition: var(--transition); border: 2px solid var(--accent-color); cursor: pointer; letter-spacing: 1px; animation: fadeInUp 1.4s ease; }
         .btn-gold:hover { background: transparent; color: var(--accent-color); }
 
+        /* --- SECTIONS --- */
         .infographic-section, .destinations, .cta-section { padding: 80px 10%; }
         .infographic-section { background: var(--white); }
         .section-header { text-align: center; margin-bottom: 60px; }
         .section-header h2 { font-size: 2.5rem; margin-bottom: 10px; }
         .section-header span { display: block; width: 60px; height: 4px; background: var(--accent-color); margin: 0 auto; }
-
+        
         .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; }
         .stat-card { text-align: center; padding: 40px 20px; border-radius: 20px; background: var(--bg-color); transition: var(--transition); border: 1px solid rgba(0,0,0,0.05); }
         .stat-card:hover { transform: translateY(-10px); box-shadow: var(--shadow); border-color: var(--accent-color); }
         .stat-icon { font-size: 3rem; color: var(--primary-color); margin-bottom: 20px; }
         .stat-number { font-size: 2.5rem; font-weight: 700; color: var(--accent-color); display: block; margin-bottom: 10px; }
 
-        .filter-container { text-align: center; margin-bottom: 40px; }
-        .filter-btn { background: none; border: 1px solid var(--primary-color); padding: 10px 25px; margin: 5px; border-radius: 30px; cursor: pointer; color: var(--primary-color); font-family: 'Prompt', sans-serif; transition: var(--transition); }
-        .filter-btn.active, .filter-btn:hover { background: var(--primary-color); color: var(--white); }
-
         .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; }
         .card { background: var(--white); border-radius: 15px; overflow: hidden; box-shadow: var(--shadow); transition: var(--transition); }
-        .card.hide { display: none; }
+        .card:hover { transform: translateY(-10px); }
         .card-img { height: 220px; background-color: #ddd; background-size: cover; background-position: center; position: relative; }
         .card-tag { position: absolute; top: 15px; right: 15px; background: rgba(26, 60, 52, 0.9); color: var(--white); padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; }
         .card-body { padding: 25px; }
@@ -133,19 +76,9 @@
 
         .cta-section { background: var(--primary-color); color: var(--white); text-align: center; }
         footer { background: #112621; color: #888; text-align: center; padding: 40px; font-size: 0.9rem; }
-        .social-icons { margin-top: 20px; }
-        .social-icons a { color: var(--white); font-size: 1.2rem; margin: 0 10px; transition: var(--transition); }
-        .social-icons a:hover { color: var(--accent-color); transform: scale(1.2); }
-
-        .scroll-top {
-            position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px;
-            background: var(--accent-color); color: var(--white); border-radius: 50%;
-            display: flex; justify-content: center; align-items: center; cursor: pointer;
-            opacity: 0; visibility: hidden; transition: var(--transition); z-index: 999;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
+        .social-icons a { color: var(--white); margin: 0 10px; font-size: 1.2rem; }
+        .scroll-top { position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; background: var(--accent-color); color: var(--white); border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; opacity: 0; visibility: hidden; transition: var(--transition); z-index: 999; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
         .scroll-top.active { opacity: 1; visibility: visible; }
-        .scroll-top:hover { background: var(--primary-color); transform: translateY(-5px); }
 
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         @media (max-width: 768px) { .hero h1 { font-size: 2.5rem; } }
@@ -154,30 +87,24 @@
 <body id="home">
 
     <header>
-        <a href="#home" class="logo">YALA <span>VISIT</span></a>
-        
-        <div class="menu-icon" onclick="toggleMenu()">
-            <i class="fas fa-bars"></i>
-        </div>
-
+        <a href="index.html" class="logo">YALA <span>VISIT</span></a>
+        <div class="menu-icon" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
         <nav class="navbar" id="navbar-menu">
             <ul>
-                <li><a href="#home" onclick="toggleMenu()">หน้าหลัก</a></li>
+                <li><a href="index.html" style="color: var(--accent-color);">หน้าหลัก</a></li>
                 <li><a href="about.html">รู้จักยะลา</a></li>
-                <li><a href="#destinations" onclick="toggleMenu()">สถานที่ท่องเที่ยว</a></li>
-                <li><a href="#contact" class="btn-nav-cta" onclick="toggleMenu()">จองทริป</a></li>
+                <li><a href="attractions.html">สถานที่ท่องเที่ยว</a></li>
+                <li><a href="booking.html" class="btn-nav-cta">จองทริป</a></li>
             </ul>
         </nav>
     </header>
 
-    <div class="scroll-top" onclick="scrollToTop()">
-        <i class="fas fa-arrow-up"></i>
-    </div>
+    <div class="scroll-top" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></div>
 
     <section class="hero">
         <h1>ใต้สุดสยาม เมืองงามชายแดน</h1>
         <p>สัมผัสเสน่ห์แห่งขุนเขา ทะเลหมอก และวัฒนธรรมพหุภาคีในสไตล์ที่แตกต่าง</p>
-        <button class="btn-gold" onclick="document.getElementById('destinations').scrollIntoView({behavior: 'smooth'})">เริ่มต้นการเดินทาง</button>
+        <a href="attractions.html" class="btn-gold">เริ่มต้นการเดินทาง</a>
     </section>
 
     <section class="infographic-section">
@@ -187,143 +114,75 @@
         </div>
         <div class="stats-grid">
             <div class="stat-card">
-                <i class="fas fa-mountain stat-icon"></i>
-                <span class="stat-number">365</span>
-                <p>วันแห่งทะเลหมอก<br>ณ อัยเยอร์เวง</p>
+                <i class="fas fa-mountain stat-icon"></i><span class="stat-number">365</span><p>วันแห่งทะเลหมอก<br>ณ อัยเยอร์เวง</p>
             </div>
             <div class="stat-card">
-                <i class="fas fa-tree stat-icon"></i>
-                <span class="stat-number">100%</span>
-                <p>พื้นที่สีเขียว<br>แห่งป่าฮาลา-บาลา</p>
+                <i class="fas fa-tree stat-icon"></i><span class="stat-number">100%</span><p>พื้นที่สีเขียว<br>แห่งป่าฮาลา-บาลา</p>
             </div>
             <div class="stat-card">
-                <i class="fas fa-utensils stat-icon"></i>
-                <span class="stat-number">Best</span>
-                <p>ไก่เบตง & ส้มโชกุน<br>รสชาติระดับตำนาน</p>
+                <i class="fas fa-utensils stat-icon"></i><span class="stat-number">Best</span><p>ไก่เบตง & ส้มโชกุน<br>รสชาติระดับตำนาน</p>
             </div>
         </div>
     </section>
 
-    <section id="destinations" class="destinations">
+    <section class="destinations">
         <div class="section-header">
-            <h2>จุดหมายปลายทาง</h2>
+            <h2>ไฮไลท์ท่องเที่ยว</h2>
             <span></span>
-            <p style="margin-top: 15px; color: var(--text-light);">เลือกสไตล์การท่องเที่ยวที่คุณชอบ</p>
         </div>
-
-        <div class="filter-container">
-            <button class="filter-btn active" onclick="filterSelection('all')">ทั้งหมด</button>
-            <button class="filter-btn" onclick="filterSelection('nature')">ธรรมชาติ</button>
-            <button class="filter-btn" onclick="filterSelection('culture')">วัฒนธรรม</button>
-            <button class="filter-btn" onclick="filterSelection('adventure')">ผจญภัย</button>
-        </div>
-
         <div class="cards-grid">
-            <div class="card nature adventure">
+            <div class="card">
                 <div class="card-img" style="background-image: url('https://thailandtourismdirectory.go.th/assets/upload/2021/11/1/20211101859c0490f23075677943d039750d037a111409.jpg');"><span class="card-tag">Highlight</span></div>
                 <div class="card-body">
                     <h3>สกายวอล์ค อัยเยอร์เวง</h3>
                     <p>ชมทะเลหมอกแบบ 360 องศา บนทางเดินกระจกที่ยาวที่สุดในอาเซียน</p>
-                    <div class="card-footer"><span><i class="fas fa-map-marker-alt"></i> อ.เบตง</span><span><i class="fas fa-arrow-right"></i></span></div>
+                    <div class="card-footer"><span>อ.เบตง</span><a href="attractions.html" style="color:var(--accent-color)">ดูเพิ่มเติม</a></div>
                 </div>
             </div>
-            <div class="card nature">
-                <div class="card-img" style="background-image: url('https://tatapi.tourismthailand.org/tatfs/Image/CustomPOI/Picture/P03013239_1.jpeg');"><span class="card-tag">Nature</span></div>
-                <div class="card-body">
-                    <h3>สวนดอกไม้เมืองหนาว</h3>
-                    <p>สวนไม้ดอกเมืองหนาวท่ามกลางหุบเขา ความงดงามแห่งพฤกษานานาพันธุ์</p>
-                    <div class="card-footer"><span><i class="fas fa-map-marker-alt"></i> หมู่บ้านปิยะมิตร 2</span><span><i class="fas fa-arrow-right"></i></span></div>
-                </div>
-            </div>
-            <div class="card culture">
-                <div class="card-img" style="background-image: url('https://thai.tourismthailand.org/Images/attraction/Attraction_1180.jpg');"><span class="card-tag">History</span></div>
-                <div class="card-body">
-                    <h3>อุโมงค์ปิยะมิตร</h3>
-                    <p>ร่องรอยประวัติศาสตร์ในอดีต อุโมงค์ดินที่ขุดด้วยแรงคน ล้อมรอบด้วยป่าทึบ</p>
-                    <div class="card-footer"><span><i class="fas fa-map-marker-alt"></i> อ.เบตง</span><span><i class="fas fa-arrow-right"></i></span></div>
-                </div>
-            </div>
-            <div class="card adventure">
+            <div class="card">
                 <div class="card-img" style="background-image: url('https://thailandtourismdirectory.go.th/assets/upload/2017/11/02/2017110255561a096c469f6874e4ce4999f8d5ac115858.jpg');"><span class="card-tag">Adventure</span></div>
                 <div class="card-body">
                     <h3>ป่าฮาลา-บาลา</h3>
                     <p>อเมซอนแห่งเอเชีย ล่องเรือชมธรรมชาติ ส่องนกเงือก และสัมผัสความดิบของผืนป่า</p>
-                    <div class="card-footer"><span><i class="fas fa-map-marker-alt"></i> อ.ธารโต</span><span><i class="fas fa-arrow-right"></i></span></div>
+                    <div class="card-footer"><span>อ.ธารโต</span><a href="attractions.html" style="color:var(--accent-color)">ดูเพิ่มเติม</a></div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-img" style="background-image: url('https://thai.tourismthailand.org/Images/attraction/Attraction_1180.jpg');"><span class="card-tag">History</span></div>
+                <div class="card-body">
+                    <h3>อุโมงค์ปิยะมิตร</h3>
+                    <p>ร่องรอยประวัติศาสตร์ในอดีต อุโมงค์ดินที่ขุดด้วยแรงคน ล้อมรอบด้วยป่าทึบ</p>
+                    <div class="card-footer"><span>อ.เบตง</span><a href="attractions.html" style="color:var(--accent-color)">ดูเพิ่มเติม</a></div>
                 </div>
             </div>
         </div>
+        <div style="text-align:center; margin-top:40px;">
+            <a href="attractions.html" class="btn-gold" style="background:transparent; color:var(--primary-color); border:1px solid var(--primary-color);">ดูสถานที่ทั้งหมด</a>
+        </div>
     </section>
 
-    <section id="contact" class="cta-section">
+    <section class="cta-section">
         <h2 style="color: var(--white);">พร้อมสัมผัสประสบการณ์สุดพิเศษหรือยัง?</h2>
-        <p style="margin: 20px 0;">วางแผนการเดินทางของคุณวันนี้ เพื่อความทรงจำที่มิอาจลืมเลือน</p>
-        <button class="btn-gold" style="background: var(--white); color: var(--primary-color);">จองทริปเลย</button>
+        <p style="margin: 20px 0;">วางแผนการเดินทางของคุณวันนี้</p>
+        <a href="booking.html" class="btn-gold" style="background: var(--white); color: var(--primary-color);">จองทริปเลย</a>
     </section>
 
     <footer>
         <p>&copy; 2024 Yala Tourism Board. Designed with elegance.</p>
-        <div class="social-icons">
+        <div class="social-icons" style="margin-top:20px;">
             <a href="#"><i class="fab fa-facebook"></i></a>
             <a href="#"><i class="fab fa-instagram"></i></a>
             <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-line"></i></a>
         </div>
     </footer>
 
     <script>
-        function toggleMenu() {
-            var menu = document.getElementById("navbar-menu");
-            menu.classList.toggle("active");
-        }
-
+        function toggleMenu() { document.getElementById("navbar-menu").classList.toggle("active"); }
         window.addEventListener('scroll', function() {
             var scrollBtn = document.querySelector('.scroll-top');
-            if (window.scrollY > 300) {
-                scrollBtn.classList.add('active');
-            } else {
-                scrollBtn.classList.remove('active');
-            }
+            if (window.scrollY > 300) scrollBtn.classList.add('active'); else scrollBtn.classList.remove('active');
         });
-
-        function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function filterSelection(c) {
-            var x, i;
-            x = document.getElementsByClassName("card");
-            var btns = document.getElementsByClassName("filter-btn");
-
-            for (i = 0; i < btns.length; i++) {
-                btns[i].classList.remove("active");
-                if (event.target == btns[i]) btns[i].classList.add("active");
-            }
-
-            if (c == "all") c = "";
-            for (i = 0; i < x.length; i++) {
-                removeClass(x[i], "hide");
-                if (x[i].className.indexOf(c) == -1) addClass(x[i], "hide");
-            }
-        }
-
-        function addClass(element, name) {
-            var i, arr1, arr2;
-            arr1 = element.className.split(" ");
-            arr2 = name.split(" ");
-            for (i = 0; i < arr2.length; i++) {
-                if (arr1.indexOf(arr2[i]) == -1) element.className += " " + arr2[i];
-            }
-        }
-
-        function removeClass(element, name) {
-            var i, arr1, arr2;
-            arr1 = element.className.split(" ");
-            arr2 = name.split(" ");
-            for (i = 0; i < arr2.length; i++) {
-                while (arr1.indexOf(arr2[i]) > -1) arr1.splice(arr1.indexOf(arr2[i]), 1);
-            }
-            element.className = arr1.join(" ");
-        }
+        function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
     </script>
 </body>
 </html>
